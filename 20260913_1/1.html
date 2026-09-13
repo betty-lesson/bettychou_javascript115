@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20260913</title>
+</head>
+
+<body>
+    <h1>首頁</h1>
+    <script>
+        let numberFirst = 10; //小駝峰
+        let NumberSecond = '99'; //大駝峰
+
+        /*變數的宣告與賦值，let可變*/
+        let num; //宣告變數
+        num = 100; //賦值
+        console.log(num);
+        num = 200; //重新賦值
+        console.log(num);
+
+        /*
+        常數的宣告與賦值，const不可變
+        const name;
+        const name = 'BBB';
+        不能這樣寫，會報錯，因為const必須在宣告時就賦值
+        */
+        const name = 'AAA'; //宣告常數
+        console.log(name);
+
+        console.clear(); //清除console.log的訊息
+
+        //-------------------------------------------------------------
+
+        /*作用域的保護*/
+        let a = 10;
+        console.log(a); //會印10
+
+        {
+            let a = 20; 
+            console.log(a); //會印20，作用域內的a只有在這個區塊內有效
+        } //區塊作用域
+
+        console.log(a); //會印10
+        //會發現作用域外層的a才會被印出來，並且不會被作用域以內的a所影響，因為有作用域的保護
+
+    </script>
+</body>
+
+</html>
