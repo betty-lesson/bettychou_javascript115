@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20260913_04</title>
+</head>
+
+<body>
+    <h1>字串處理方式</h1>
+    <script>
+
+        const str1 = '尤里';
+        const str2 = '安傑';
+        console.log(`${str1}${str2}`);
+        console.log(`C:\\Users\\USER`); //斜線避免被程式以為要跳脫字元，需要再多打一次:\\
+
+        const text1 = '愛梅特賽爾克';
+        console.log(text1.length);//字串長度
+        console.log(text1[5]); //抓字串的第5編號(從頭數來第6個)的字，0為首項
+        console.log(text1.charAt(5)); //同上意思
+        console.log(text1[text1.length - 2]); //用算的來抓總字元長度的倒數第二個數列的字
+        console.log(text1.indexOf('愛')); //抓這個字在數列第幾，-1代表沒找到
+
+        console.clear();
+
+        /*轉大小寫*/
+        let text = " Hello, JavaScript World!   ";
+        console.log(text.toUpperCase());   // HELLO, JAVASCRIPT WORLD!
+        console.log(text.toLowerCase());   // hello, javascript world!
+
+        /*找 有無 這個字*/
+        console.log(text.includes("Script"));   // 回傳true false
+
+        /*擷取字串*/
+        // slice(start：起始索引包含，end：結束索引不包含）
+        console.log(text.slice(0, 5));      // Hello
+        console.log(text.slice(7, 17));     // 
+        
+        /*拆分字串*/
+        console.log(text.split(','));
+
+        /*去前後空白*/
+        console.log(text.trim());
+
+    </script>
+</body>
+
+</html>

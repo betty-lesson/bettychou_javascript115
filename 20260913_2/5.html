@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20260913_05</title>
+</head>
+
+<body>
+    <h1>條件判斷</h1>
+    <script>
+        /*if子句*/
+        let age = 17;
+        if (age > 18) {
+            console.log('成年');
+        }
+        else {
+            console.log('未成年');
+        }
+
+        /*if-else子句*/
+        const weather = 'rainy';
+        if (weather === 'sunny') console.log('可出門玩');
+        else console.log('待在家');
+
+        console.clear();
+
+        /*多重條件判斷*/
+        const qMonth = 12; //Q1 0-3月；Q2 4-6；Q3 7-9；Q4 10-12
+
+        if (0 < qMonth && qMonth <= 12) {
+            if (qMonth <= 3) {
+                console.log('Q1賽季');
+            }
+            else {
+                if (qMonth <= 6) {
+                    console.log('Q2賽季');
+                }
+                else {
+                    if (qMonth <= 9) {
+                        console.log('Q3賽季');
+                    }
+                    else {
+                        console.log('Q4賽季');
+                    }
+                }
+            }
+        }
+        else { console.log('無效的值') }
+
+        //簡化寫法(拿掉else跟if間的大括號)
+        if (0 < qMonth && qMonth <= 12) {
+
+            if (qMonth <= 3) {
+                console.log('Q1賽季');
+            }
+            else if (qMonth <= 6) {
+                console.log('Q2賽季');
+            }
+            else if (qMonth <= 9) {
+                console.log('Q3賽季');
+            }
+            else {
+                console.log('Q4賽季');
+            }
+        }
+        else { console.log('無效的值') }
+
+        // //-----------------------
+
+        // const person1 = {
+        //     age: 32,
+        //     name: '尤里安傑',
+        // };
+
+        // const person2 = {
+        //     age: 17,
+        //     name: '琳',
+        // };
+
+        // const person3 = {
+        //     age: 23,
+        //     name: '雅修朵拉',
+        // };
+
+        // const person=[person1, person2, person3]
+
+        // if (person.age >= 18) {
+        //     console.log(person.name);
+        // };
+
+    </script>
+</body>
+
+</html>

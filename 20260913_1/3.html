@@ -103,7 +103,7 @@
         console.log(isAdult || hasLicense); //true
         console.log(isAdult || hasCar); //true
         console.log(hasLicense || false); //全false
-        console.log(false || '' || NaN || undefined || '黑迪斯' || true );
+        console.log(false || '' || NaN || undefined || '黑迪斯' || true);
         //空字串、null、undefined、NaN會被當作false，字串算true，所以碰到字串就會先回傳了
         console.clear();
 
@@ -120,16 +120,28 @@
 
 
         console.log((true && false) || true); //true
-        console.log(true && (false || true)); //true
+        console.log(true && (false || true)); //
+
+        console.clear();
 
         //---------------------------------------------------------
         /*檢測登入小函式*/
-        function authAction(isLoggedIn=false){
+        function authAction(isLoggedIn = false) {
             isLoggedIn && console.log("歡迎回來!");
             !isLoggedIn && alert("請先登入");
             return;
             prompt("請輸入密碼");
         }
+
+        //---------------------------------------------------------
+        /*三元運算子*/
+        let age = 25;
+        const message = age >= 18 ? '成年' : '未成年'; //(如果某條件成立) ? (則A) : (否則B)
+        console.log(message);
+
+        const grade = 60;
+        let level = grade >= 90 ? '甲等' : grade >=70 ? '乙等' : '丙等'; //可巢狀比較
+        console.log(level);
     </script>
 </body>
 

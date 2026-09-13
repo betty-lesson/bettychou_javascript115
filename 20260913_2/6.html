@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20260913_06</title>
+</head>
+
+<body>
+    <h1>switch 根據value 進行不同的路線</h1>
+    <script>
+        /*switch語句，當需要根據一個變數的不同值執行不同程式碼時，switch 語句會比多個 if-else 更清晰*/
+        const day = 3;
+        switch (day) {
+            case 1:
+                console.log('星期一');
+                break; //確保抵達這裡時能破壞語法區間作用，不再向下讀取
+            case 2:
+                console.log('星期二');
+                break;
+
+            case 3:
+                console.log('星期三');
+                break;
+
+            default: //找不到條件就進入default
+                console.log('其他');
+                break;
+        }
+        //switch case導向如果不使用break，碰到相關結果就不會結束，而會連通後面的case一起顯示
+        console.clear();
+
+
+        /*switch組合*/
+        const cardLevel = 'C';
+
+        switch (cardLevel) {
+            case 'C':
+            case 'U':
+            case 'R':
+                console.log('丟垃圾桶，不值錢');
+                break; //這樣CUR就會算在同一空間
+
+            case 'RR':
+            case 'AR':
+            case 'SR':
+                console.log('留著保值或賣掉');
+                break;
+
+            case 'SAR':
+            case 'UR':
+                console.log('太爽了，超賺der');
+                break;
+
+            default:
+                console.log('賺麻了賺麻了');
+                break;
+        }
+
+        console.clear();
+
+        //練習----------------------
+
+        const score = 95;
+        if (0 <= score && score <= 100) {
+            if (score <= 59) {
+                console.log('F');
+            }
+            else if (score <= 69) {
+                console.log('D');
+            }
+            else if (score <= 79) {
+                console.log('C');
+            }
+            else if (score <= 89) {
+                console.log('B');
+            }
+            else if (score <= 100) {
+                console.log('A');
+            }
+        }
+        else { console.log('分數輸入有誤'); }
+
+        //switch寫法
+        switch (true) {
+            case score >= 90: level = 'A'; break;
+            case score >= 80: level = 'B'; break;
+            case score >= 70: level = 'C'; break;
+            case score >= 60: level = 'D'; break;
+            default: level = 'F'; break;
+        }
+
+        console.log(`分數 ${score} 的等級是: ${level}`)
+
+        //練習----------------------
+        const year = 2020;
+        if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
+            console.log(`${year}年是閏年:` + true);
+        }
+
+    </script>
+</body>
+
+</html>
