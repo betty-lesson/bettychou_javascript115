@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello, World!3</h1>
+
+    <script>
+        //臨時變數可隨時改變
+        num = 1;
+
+        //let這個變數只在這個區塊內有效也可改變，出了這區塊就消失了
+        //let 因為作用域的關係，即使重複撞名在每段程式碼內，也不會發生共用變數。
+        function test(tip) {
+            let num2 = 50;
+            num2 = num2 + tip; //價格額外多了小費
+            return num2;
+        };
+        //const不可變，保護變數不被修改
+        const num3 = 50 * 3; //num3 = 100 無效
+
+        //var以前使用的可變變數，現在不用了
+        var num4 = 50;
+
+    </script>
+</body>
+
+</html>

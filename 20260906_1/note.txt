@@ -1,0 +1,7 @@
+Git Graph插件
+Toggle Screencast mode內建功能
+
+重新編輯已commit的註解
+git rebase -i HEAD~3(往前數3個)
+pick <hash2> 2
+└>edit <hash2> 2
