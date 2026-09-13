@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>20260913_02</title>
 </head>
+
 <body>
-    
+    <h1>基本資料型別</h1>
+
+    <script>
+        /*資料型別_數字*/
+        const number = 111; //數字
+
+        /*字串模板*/
+        console.log(`${number} 的型別為 ${typeof number}`); //typeof可以查看資料型別
+        //`就是tab上面的~按鍵；${變數名稱}，可以把變數放進字串裡面，這樣就不用用+去拼接字串了
+
+        /*Infinity無限大，任一值/0 */
+        const infinity = 10 / 0;
+        console.log(infinity);
+
+        /*NaN不是數字，非數字做算術 or 0/0 */
+        const nan = 0 / 0;
+        const nan2 = 'abc' / 10;
+        console.log(nan, nan2);
+
+        //-------------------------------------------------------------
+
+        /*資料型別-字串*/
+        const string1 = 'Urianger'; //字串
+        const string2 = "最偉大的魔道士";
+        
+        console.log(`
+        ${string1}
+        是${string2}
+        `) //使用字串模板``可以換行，並且不會影響字串的內容`
+
+        const string3 = 'Urianger\'s \n委託'; //字串裡面有單引號(Urianger's)，使用\跳脫；\n換行
+        console.log(string3);
+
+        //-------------------------------------------------------------
+
+        /*資料型別-布林*/
+        const boolean1 = true; //布林
+        const boolean2 = false; //布林
+
+        console.log(boolean1, boolean2);
+
+        //-------------------------------------------------------------
+        /*資料型別-物件*/
+        const object = {
+            name: 'Urianger',
+            job: '魔道士',
+            age: 32,
+            isMarried: false
+        } //包含屬性的物件，屬性名稱可以是字串或數字，屬性值可以是任意資料型別
+
+        const noData = null; 
+        console.log(`${noData} 的型別為 ${typeof noData}`);//null，無資料，也是一種物件
+
+        let noValue = undefined; //undefined，沒有值，也不屬於物件，沒有被賦值的變數就是undefined
+    </script>
 </body>
+
 </html>

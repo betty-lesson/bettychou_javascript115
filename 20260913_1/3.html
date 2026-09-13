@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20260913_03</title>
+</head>
+
+<body>
+    <h1>運算子</h1>
+    <script>
+        let a = 10;
+        let b = 3;
+
+        /*算術運算子*/
+        console.log(a + b);
+        console.log(a - b);
+        console.log(a * b);
+        console.log(a / b);
+        console.log(a % b); //取餘數
+        console.log(a ** b); //次方，等同A^B 10的3次方
+
+        console.clear();
+
+        //--------------------------------------------------------------
+
+        /*遞增遞減運算子*/
+        let c = 5;
+        c = c + 1; //6
+        c = c + 1; //7，會依照上一次的結果去算
+        c--; //6，等同c = c - 1，也等同 c -= 1，這行結束後才會減1
+        c++; //7，等同c = c + 1，也等同 c += 1，這行結束後才會加1
+        ++c; //8，跟c++差別在它是這行開始前就會+1
+
+        //--------------------------------------------------------------
+
+        /*複合運算子*/
+        a = a + 2; //10+2=12
+        a += 2; //12+2=14，等同a = a + 2
+        a -= 2; //14-2=12，等同a = a - 2
+        a *= 2; //12*2=24，等同a = a * 2
+        a /= 2; //24/2=12，等同a = a / 2
+
+        //--------------------------------------------------------------
+
+        /*比較運算子，true or false*/
+        console.log(a > b);
+        console.log(a < b);
+        console.log(a >= b);
+        console.log(a <= b);
+
+        console.log(a == b); //false，比較，比較值是否相等
+        console.log(a === b);  //false，===是嚴格比較，會比較資料型別，==是寬鬆比較，不會比較資料型別
+        console.log(a != b); //true，!=意思是比較值是否不相等，!=是寬鬆比較，!==是嚴格比較
+
+        console.clear();
+
+        /*舉例*/
+        strA = '10';
+        numA = 10;
+        console.log(strA, numA);
+        console.log(strA == numA); //true，因為寬鬆比較只會比較值
+        console.log(strA === numA); //false，因為嚴格比較還會比較資料型別
+        console.log(strA != numA); //false，因為寬鬆比較只會比較值，值相等所以是false
+        console.log(strA !== numA); //true，因為嚴格比較還會比較資料型別，型別不相等，所以兩者不相等為true
+
+        /*字串也可以做比較，比較編碼代號順位*/
+        let strC = 'c';
+        let strD = 'd';
+        console.log(strC > strD);//false
+        console.log(strC < strD);//true
+
+        console.clear();
+
+
+        //--------------------------------------------------------------
+
+        /*邏輯運算子*/
+        let isAdult = true;
+        let hasLicense = false;
+        let hasCar = true;
+
+        /*
+        and運算子 &&
+        當and兩邊為true時才為true
+        */
+        console.log(isAdult && hasLicense); //false，其實是傳最左邊的false值給你
+        console.log(isAdult && hasCar); //true，其實是傳最右邊的true值給你
+        //T = T && T
+        //F = T && F
+        //F = F && T
+        //F = F && F
+        const answer = true && true && console.log('暗之戰士'); //前兩個皆為T，因此讀最右邊的值給你
+        console.log(answer);
+
+        console.clear();
+
+        /*
+        or運算子
+        當or兩邊有一邊為true時就為true
+        */
+        console.log(isAdult || hasLicense); //true
+        console.log(isAdult || hasCar); //true
+        console.log(hasLicense || false); //全false
+        console.log(false || '' || NaN || undefined || '黑迪斯' || true );
+        //空字串、null、undefined、NaN會被當作false，字串算true，所以碰到字串就會先回傳了
+        console.clear();
+
+        /*
+        not運算子
+        將當前值反轉
+        當not前面為true時後面就為false，前面為false時後面則為true
+        */
+        const theNOT = !true;
+        const theNOT2 = !'古拉哈提亞'; //false，數字、字串算true，true值相反即為false
+        let checkVar = 0; //0算false
+        const theNOT3 = !checkVar;
+        console.log(theNOT, theNOT2, theNOT3);
+
+
+        console.log((true && false) || true); //true
+        console.log(true && (false || true)); //true
+
+        //---------------------------------------------------------
+        /*檢測登入小函式*/
+        function authAction(isLoggedIn=false){
+            isLoggedIn && console.log("歡迎回來!");
+            !isLoggedIn && alert("請先登入");
+            return;
+            prompt("請輸入密碼");
+        }
+    </script>
+</body>
+
+</html>
