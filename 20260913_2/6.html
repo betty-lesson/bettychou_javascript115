@@ -94,10 +94,20 @@
         console.log(`分數 ${score} 的等級是: ${level}`)
 
         //練習----------------------
-        const year = 2020;
+        /*const year = 2020;
         if (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0) {
             console.log(`${year}年是閏年:` + true);
-        }
+        }*/
+        
+        //優化寫法
+        /*const year = 2026;
+        const leapyear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+        console.log(`${year}年是閏年${leapyear}`);*/
+        
+        //優化寫法
+        const year = 2026;
+        const leapyear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+        console.log(`${year}年${leapyear ? '是' : '不是'}閏年`);
 
     </script>
 </body>
