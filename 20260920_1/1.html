@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for迴圈</title>
+</head>
+
+<body>
+    <h1>for迴圈</h1>
+    <script>
+        //初始執行、條件判斷、迴圈結束時執行
+        for (let i = 0; i <= 5; i++) {
+            console.log(i);
+        }
+
+        //累加總和
+        let sum = 0;
+        for (let i = 0; i < 11; i++) {
+            sum += i; //sum = sum + i
+        }
+        console.log(sum);
+    </script>
+
+    <h2>while迴圈</h2>
+    <script>
+        console.clear();
+
+        //初始，僅需條件，迴圈結束後的執行放裡面
+        let count = 1;
+        while (count <= 5) {
+            console.log(`${count}`);
+            count++;
+        }
+
+        //0~100偶數
+        console.clear();
+        let num = 0
+        while (num <= 100) {
+            if (num % 2 == 0) console.log(`${num}`);
+            num++;
+        }
+    </script>
+
+    <h3>do while迴圈</h3>
+    <script>
+        console.clear();
+
+        //無論如何都會先做一次，結束時檢查是否有資格再做一次
+        let k = 0;
+        do {
+            console.log('請輸入密碼')
+            k++;
+        } while (k < 3);
+
+    </script>
+
+</body>
+
+</html>

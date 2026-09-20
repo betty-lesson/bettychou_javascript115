@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陣列</title>
+</head>
+
+<body>
+    <h1>陣列</h1>
+    <script>
+        //宣告陣列，與陣列數列
+        /*const fruit1 = '蘋果';
+        const fruit2 = '香蕉';
+        const fruit3 = '櫻桃';*/
+        const fruits = ['蘋果', '香蕉', '櫻桃'];
+        console.log(fruits[0]); //蘋果
+
+        const ary = [1, 'FFXIV', true]; //各資料型別都可塞
+        ary[3] = 'apple';
+        console.log(ary); //1, 'FFXIV', true , apple；陣列可以修改，也可以在空的地方塞新東西
+
+        //new array透過特定的建構程式產生陣列，只有在需要動態建立指定長度陣列時才考慮 new Array()
+        let emptyArray2 = new Array(3); //等於let emptyArray2 = [ , , ];
+        let fruits2 = new Array("蘋果", "香蕉", "橘子"); //等於let fruits2 = ["蘋果", "香蕉", "橘子"];
+
+        //可以與迴圈共同使用
+        const array = ['蘋果', '香蕉', '櫻桃'];
+        for (let i = 0; i<array.length; i++){
+            console.log(array[i]);
+        }
+
+        //for of循序拿陣列
+        for(let item of students){
+            console.log(item);
+        }
+    </script>
+</body>
+
+</html>

@@ -108,7 +108,8 @@
         const height = 170;
         const weight = 70;
         /*const BMI =weight / ((height/100)*(height/100));*/
-        const BMI =weight / (height/100) ** 2; //2次方優化寫法
+        /* const BMI =weight / (height/100) ** 2; //優化寫法，2次方*/
+        const BMI = (weight / (height/100) ** 2).toFixed(2); //優化寫法，保留小數點後兩位
         switch(true){
             case BMI<=18.5: state = '過輕'; break;
             case 18.5<BMI && BMI<24.9: state = '正常'; break;
