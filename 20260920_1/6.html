@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+
+<body>
+    <h1>函式Function</h1>
+    <script>
+        //創建函式
+        function createBMI() {
+            const height = 170;
+            const weight = 70;
+            const BMI = (weight / (height / 100) ** 2).toFixed(2);
+            switch (true) {
+                case BMI <= 18.5: state = '過輕'; break;
+                case 18.5 < BMI && BMI < 24.9: state = '正常'; break;
+                case 25 < BMI && BMI < 29.9: state = '過重'; break;
+                default: state = '過胖'; break;
+            }
+            console.log(`身高${height}cm，體重${weight}kg，體重狀態${state}`);
+        }
+
+        //呼叫函示
+        createBMI();
+
+        //迴圈呼叫函式
+        for (c = 0; c < 3; c++) {
+            createBMI();
+        }
+
+        //函式支援參數傳遞
+        function createBMI2(height, weight) {
+            if (height === undefined || weight === undefined) {
+                console.log('請輸入身高體重')
+            }
+            else {
+                /* const height = 170;
+                const weight = 70;*/
+                const BMI = (weight / (height / 100) ** 2).toFixed(2);
+                switch (true) {
+                    case BMI <= 18.5: state = '過輕'; break;
+                    case 18.5 < BMI && BMI < 24.9: state = '正常'; break;
+                    case 25 < BMI && BMI < 29.9: state = '過重'; break;
+                    default: state = '過胖'; break;
+                }
+                console.log(`身高${height}cm，體重${weight}kg，體重狀態${state}`);
+            }
+        }
+
+        createBMI2(185, 70);
+        createBMI2(); //undefined
+
+        //優化寫法
+        console.clear();
+        function createBMI3(height, weight, userName = '訪客') {
+            if (height === undefined || weight === undefined) {
+                return '請輸入 ${userName} 身高體重'
+            }
+            else {
+                const BMI = (weight / (height / 100) ** 2).toFixed(2);
+
+                let res;
+                switch (true) {
+                    case BMI <= 18.5: state = '過輕'; break;
+                    case 18.5 < BMI && BMI < 24.9: state = '正常'; break;
+                    case 25 < BMI && BMI < 29.9: state = '過重'; break;
+                    default: state = '過胖'; break;
+                }
+                return `${userName}身高${height}cm，體重${weight}kg，體重狀態${state}`;
+            }
+        }
+        console.log(createBMI3(170, 70)); //返還結果字串
+        console.log(createBMI3(190, 80, '芝諾斯') + '\n-----------\n');
+
+        //優化寫法2
+        function createBMI4(userInfo) {
+            /*const height = userInfo.height;
+            const weight = userInfo.weight;
+            const userName = userInfo.name || '訪客';*/
+            const { height, weight, name: userName = '訪客' } = userInfo; //解構賦值 
+                                    //name(屬性): userName(想取的變數名) = '訪客'(預設值)
+
+            //這四種情況任一都是無效 空值  || NaN || undefined || null || 0 || '' || 負數
+            if (!Number.isFinite(height) || !Number.isFinite(weight) || height <= 0 || weight <= 0)
+                return '請正確輸入 ${userName} 身高體重'
+
+            const BMI = (weight / (height / 100) ** 2).toFixed(2);
+
+            let res;
+            switch (true) {
+                case BMI <= 18.5: state = '過輕'; break;
+                case 18.5 < BMI && BMI < 24.9: state = '正常'; break;
+                case 25 < BMI && BMI < 29.9: state = '過重'; break;
+                default: state = '過胖'; break;
+            }
+            return `${userName}身高${height}cm，體重${weight}kg，體重狀態${state}`;
+
+        }
+
+        const user1 = {
+            weight: 0,
+            height: 160,
+        }
+
+        const user2 = {
+            name: '琳',
+            weight: 40,
+            height: 155,
+        }
+        console.log(createBMI4(user1) + '\n-------------\n' + createBMI4(user2));
+    </script>
+</body>
+
+</html>

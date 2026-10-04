@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>物件</title>
+</head>
+
+<body>
+    <h1>物件</h1>
+    <script>
+        //物件用大括號，陣列用中括號
+        const emptyObj = {};
+
+        const urianger = {
+            name: '尤里安傑',
+            age: 32,
+            job: '占星'
+        }
+        console.log(urianger.name);
+        console.log(urianger['name']); //同上意思
+
+        const partners = {
+            sun: { name: '桑克瑞德', age: 32, job: '絕槍' },
+            uriange: { name: '尤里安傑', age: 32, job: '占星' }
+        };
+
+        console.log(partners.sun.name);
+        console.log(partners?.sun?.love);
+
+        //for in
+        console.clear();
+
+        for (const key in partners) {
+            if (partners[key] instanceof Object) {
+                console.log(`----------------`);
+                for (const subKey in partners[key]) {
+                    console.log(`key=${key}.${subKey}, value=${partners[key][subKey]}`)
+                }
+                console.log(`----------------`);
+            } else {
+                console.log(`key=${key}, value=${partners[key]}`)
+            }
+        }
+
+        //靜態方法
+        console.clear();
+        // Object.keys() - 取得所有屬性名稱（鍵）
+        let KEYS = Object.keys(partners);
+        console.log(KEYS);
+
+        // Object.values() - 取得所有屬性值
+        let VALUES = Object.values(partners);
+        console.log(VALUES);
+
+        // Object.entries() - 取得鍵值對陣列
+        let ENTRIES = Object.entries(partners);
+        console.log(ENTRIES);
+
+        console.clear();
+        for (const ENTRIES1 of Object.entries(partners)){
+            for (const ENTRIES2 of Object.entries(ENTRIES1[1])){
+            console.log(ENTRIES1[0], ENTRIES2[0], ENTRIES2[1]);
+        }
+        }
+
+    </script>
+</body>
+
+</html>

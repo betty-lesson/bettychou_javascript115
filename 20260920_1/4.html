@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陣列方法</title>
+</head>
+<body>
+    <h1>陣列方法</h1>
+    <script>
+        //陣列的push pop shift unshift
+        const partner = ['尤里安傑','雅修朵拉','桑克瑞德'];
+
+        //push 在陣列最後塞物件
+        partner.push('琳');
+        partner.push('愛梅特賽爾克');
+
+        //pop 將陣列最後的物件移除
+        const out = partner.pop()
+        console.log(out);
+
+        //unshift 在陣列最前方加物件
+        partner.unshift('光之戰士');
+        partner.unshift('阿爾博特');
+
+        //shift 將陣列最前方的物件移除
+        const dead = partner.shift();
+        console.log(dead);
+
+        //includes() 檢查指定物件是否在陣列內
+        console.log(partner.includes('光之戰士'));
+
+        //indexOf() 調查指定內容在索引幾號
+        console.log(partner.indexOf('光之戰士'));
+
+        //lastIndexOf() 同上，但從尾巴開始找
+        console.log(partner.lastIndexOf('光之戰士'));
+
+        //reverse() 陣列反轉
+        console.log(partner.reverse('光之戰士'));
+
+        //sort() 將當前陣列排序
+        console.log(partner.sort());
+
+        //join() 將當前陣列轉成字串，並可指定分隔符號
+        console.log(partner.join());
+    </script>
+</body>
+</html>

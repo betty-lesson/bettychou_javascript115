@@ -25,16 +25,22 @@
         let emptyArray2 = new Array(3); //等於let emptyArray2 = [ , , ];
         let fruits2 = new Array("蘋果", "香蕉", "橘子"); //等於let fruits2 = ["蘋果", "香蕉", "橘子"];
 
-        //可以與迴圈共同使用
+        //可以與迴圈共同使用(初學者)
         const array = ['蘋果', '香蕉', '櫻桃'];
         for (let i = 0; i<array.length; i++){
             console.log(array[i]);
         }
 
-        //for of循序拿陣列
-        for(let item of students){
+        //for of循序拿陣列(比FOR迴圈簡潔)
+        const partner = ['尤里安傑','雅修朵拉','桑克瑞德'];
+        for(let item of partner){
             console.log(item);
         }
+
+        //for each(較常用)
+        partner.forEach(function(item){
+            console.log(item);
+        });
     </script>
 </body>
 
