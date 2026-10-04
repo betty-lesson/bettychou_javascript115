@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭頭函式</title>
+</head>
+
+<body>
+    <h1>箭頭函式</h1>
+    <script>
+        //一般函式宣告方式
+        function greet(name) {
+            return `早安 ${name}`;
+        }
+
+        //箭頭函式的宣告方式，移除function，在變數後面加上=>
+        const greet2 = (name) => {
+            return `早安 ${name}`;
+        }
+        console.log(greet2('阿爾法'));
+
+        //箭頭函式的簡化寫法，function需要作用域不能省略大括號，但箭頭函式可以
+        const greet3 = (name, name2) => console.log(`早安 ${name} ${name2}`);
+
+        greet3('希德', '尼祿');
+
+        //IIFE也可以是箭頭函式
+        console.log((name => `早安 ${name}`)('騰騰十四'));
+    </script>
+</body>
+
+</html>

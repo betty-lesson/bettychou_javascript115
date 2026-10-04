@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回調函式</title>
+</head>
+
+<body>
+    <h1>會用到回調函式的prototype</h1>
+    <script>
+        const arr = ['A', 'B', 'C', 'D', 'E'];
+
+        //forEach批次讀取值
+        arr.forEach(function (value, index, array) {
+            console.log(value, index, array);
+        })
+
+        arr.forEach((value, index, array) => console.log(value, index, array)); //等同上面
+        console.clear();
+
+        //將值映射轉換，最後返回一個新array
+        const newArr = arr.map(val => val + val);
+        console.table(newArr);
+        console.table(arr);
+
+        //批次過濾，最後返回一個新array
+        console.clear();
+        const people = [
+            { name: '雅修朵拉', age: 23 },
+            { name: '尤里安傑', age: 29 },
+            { name: '艾斯蒂尼安', age: 32 },
+            { name: '桑克瑞德', age: 32 },
+        ];
+        const maGic = people.filter(person => person.age >= 30);
+        //解構寫法，結果等同上面const maGic = people.filter(({ age }) => age >= 30);
+        console.table(maGic);
+
+        //尋找 '第一個' 符合條件的元素
+        console.clear();
+        const find30up = people.find(person => person.age >= 30);
+        console.log(find30up);
+
+        //組合計，利用陣列的特性一次完成多個動作
+        //ex:找大於30歲的人名
+        const who30up = people.filter(({ age }) => age >= 30).map(({ name }) => name).join(','); 
+        //↑這裡的({age})其實就是解構，let people={name:'雅修朵拉', age:23}，let{name,age}=people
+        //(people)變({name,age})，再省略用不到的name變成({age})
+        console.log(who30up);
+
+        //reduce，累加，通常很特殊的需求會用到
+        //callbackFunction(accumulater,currentValue,currentIndex,array)↓
+        //第一個參數是累加器，第二個參數是陣列的每個元素，第三個參數是陣列的索引，第四個參數是陣列本身
+        //Fn通常會寫(前一次拿到的return結果,從陣列取出的元素)=>處理方式，初始值
+        const totalAge = people.reduce((sum, person) => sum + person.age, 0); //初始值為0，0+23=23, 23+29=52, 52+32=84, 84+32=116
+        console.log(totalAge);
+
+        //組合計reduce
+        console.clear();
+        const res1 = people.reduce((acc, cur) => {
+            if (cur.age >= 25) acc.push(cur.name);
+            return acc;
+        }, []).join(', ');
+
+        const res2 = people.reduce((acc, cur) => (cur.age >= 25) ? `${acc}, ${cur.name}` : acc, ''); //等同上面結果
+        console.log(res1 + '\n' + res2);
+
+    </script>
+</body>
+
+</html>

@@ -86,7 +86,7 @@
 
             //這四種情況任一都是無效 空值  || NaN || undefined || null || 0 || '' || 負數
             if (!Number.isFinite(height) || !Number.isFinite(weight) || height <= 0 || weight <= 0)
-                return '請正確輸入 ${userName} 身高體重'
+                return `請正確輸入 ${userName} 身高體重`
 
             const BMI = (weight / (height / 100) ** 2).toFixed(2);
 

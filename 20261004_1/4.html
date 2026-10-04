@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解構重構</title>
+</head>
+
+<body>
+    <h1>解構重構</h1>
+    <script>
+        //展開運算子的新語法將陣列或物件展開
+        const arr1 = [1, 2, 3];
+        const arr2 = [0, ...arr1, 5];//...arr1是展開
+        arr1.push(4);//事後更改不影響arr2
+        console.log(arr2, arr1);
+
+        //物件內相同名稱會以最後更新的值為主
+        console.log(obj1 = {
+            name: '阿謝姆',
+            age: 18,
+            age: 22,
+        })
+
+        //展開後同理，相同名稱會以最新值為主，新的變數會顯示在最後
+        console.log(obj2 = {
+            ...obj1,
+            name: '光之戰士',
+            gender: 'female',
+            age: 30,
+        })
+
+        //解構
+        const light = ['敏菲莉亞', '帕帕利莫', '伊達', '水晶義勇隊', '奧爾什方']
+        const member = light[0]; //敏
+        const member2 = light[1]; //帕
+        const member3 = light[2];  //伊
+        const [memberx, membery, memberz, ...rest] = light
+        //解構設定變數memberx, membery, memberz等於light['敏菲莉亞', '帕帕利莫', '伊達', '水晶義勇隊', '奧爾什方']……就會取light的前三個
+        // ...rest是取得剩餘元素展開
+        console.log(memberx, membery, memberz, ...rest);
+
+        //解構交換變數
+        let a = '伊達', b = '莉瑟';
+        [a, b] = [b, a];
+        console.log(a, b);
+
+        //----------------------------------------------
+
+        //簡單介紹各種物件類型
+        const person = {
+            // 基本資料類型
+            name: '小明',           // 字串
+            age: 25,               // 數字
+            isStudent: true,       // 布林值
+            hobby: null,           // null
+            address: undefined,    // undefined
+
+            // 函式（方法）
+            sayHello() {
+                console.log(`你好，我是 ${this.name}`);
+            },
+
+            greet: function () {
+                console.log(`歡迎，${this.name}！`);
+            },
+
+            // 箭頭函式（注意：箭頭函式的 this 不會指向物件）
+            introduce: () => {
+                console.log('這是箭頭函式');
+            },
+
+            // 陣列
+            skills: ['JavaScript', 'HTML', 'CSS'],
+            scores: [85, 92, 78],
+
+            // 巢狀物件
+            contact: {
+                email: 'xiaoming@example.com',
+                phone: '0912-345-678',
+                address: {
+                    city: '台北市',
+                    district: '大安區'
+                }
+            },
+
+            // 混合類型
+            info: {
+                name: '小明',
+                age: 25,
+                getInfo() {
+                    return `${this.name}, ${this.age} 歲`;
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

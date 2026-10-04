@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匿名函式</title>
+</head>
+
+<body>
+    <h1>匿名函式</h1>
+    <script>
+        //一般函式宣告方式
+        function greet(name) {
+            return `早安 ${name}`;
+        }
+
+        //匿名函式的宣告方式
+        const greet2 = function (name) {
+            return `早安 ${name}`;
+        }
+
+        //沒有命名function的話，加個括號就不會報錯，系統就知道是匿名函式
+        const greet3 = (function (name) {
+            return `早安 ${name}`;
+        })
+        console.log(greet3('阿爾法'));
+
+        //假如沒宣告變數去定義匿名函數，function最後面加個小括號也可以使用，即為：立即調用函式 IIFE(Immediately Invoked Function Expression)
+        (function (name) {
+            console.log(`滾邊去， ${name}`);
+        })('歐米茄');
+
+        //foreach可以拆出陣列每個值
+        function showValue(atr) {
+            console.log(`value is ${atr}`);
+
+        }
+
+        const ary = [1, 2, 3, 4, 5];
+        ary.forEach(showValue); //把foreach得到的每個值套進function內
+        console.log('\n-----------\n');
+
+        //等同上面那個
+        ary.forEach(function (value) {
+            console.log(`value is ${value}`);
+        })
+
+    </script>
+</body>
+
+</html>
