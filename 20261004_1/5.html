@@ -46,7 +46,61 @@
         console.log(Math.random() * 10); //會回傳一個0~9的浮點數
         console.log(Math.random() * 10) + 1; //1~10
 
-        //練習規劃一個fn，傳入min max，回傳一個min~max間的整數
+        //練習1
+        // //規劃一個fn，傳入min max，回傳一個min~max間的整數
+        //提示35~70是這樣寫:Math.floor(Math.random() * 36) + 35;
+        console.clear();
+        function test(min, max) {
+            return Math.floor(Math.random() * ((max - min) + 1)) + min
+        };
+        console.log(test(15, 100));
+        console.log('\n');
+
+        //迴圈一次抓n個隨機數
+        for (let i = 0; i < 10; i++) {
+            console.log(test(15, 100));
+        };
+        console.log('\n-----------\n');
+
+        //練習2
+        //1~49間隨機不重複的6個號碼，小到大排列，取後放回
+        function lottoA() {
+            const lottoSet = new Set();
+            while (lottoSet.size < 6) {
+                lottoSet.add(test(1, 49))//用前面做好的min max隨機
+            }
+            return Array.from(lottoSet).sort((a, b) => a - b);
+        }
+        console.log(lottoA());
+        console.log('\n-----------\n');
+
+        //1~49間隨機不重複的6個號碼，小到大排列，不放回
+        function lottoB() {
+            const ballsPool = Array.from({ length: 49 }, (v, i) => i + 1);
+            const getBalls = [];
+
+            for (let i = 0; i < 6; i++) {
+
+                const index = Math.floor(Math.random() * ballsPool.length) //隨機從0~48索引找某個value
+
+                //method 1
+                //getBalls.push(ballsPool[index]); //將該value 推入 getBalls陣列
+                //ballsPool.splice(index, 1); //將該value從ballsPool移除避免重複抽到
+
+                //2
+                //getBalls.push(...ballsPool.splice(index, 1)[0]);
+
+                //3
+                getBalls.push(ballsPool.splice(index, 1));
+
+                //4
+                //while (getBalls.length < 6)
+                //getBalls.push(...ballsPool.splice(Math.floor(Math.random() * ballsPool.length),1));
+                //return getBalls.sort((a, b) => a - b)
+            }
+            return getBalls.sort((a, b) => a - b)
+        };
+        console.log(lottoB());
     </script>
 </body>
 

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+</head>
+
+<body>
+    <h1>Date</h1>
+    <script>
+        const nowStr = Date(); //當前電腦的日期時間字串
+        console.log(nowStr); //普通字串
+
+        console.log(Date()); //回傳當前的日期時間字串
+        console.log(Date.now()); //回傳當前時間戳記，單位為毫秒
+
+        const now = new Date(); //建立一個新的日期物件，是一個特別的時間物件
+
+        console.log(now);
+
+        const birthday = new Date('2000-08-07 05:10:20'); //+8的方式指定時間
+        const birthday2 = new Date(2000, 7, 15, 5, 10, 20); //+8的方式指定年月日時分秒
+        const birthday3 = new Date('2026-10-04T00:00:00Z'); //UTC時間指定
+
+        console.log('\n-----------\n');
+        console.log(birthday + '\n' + birthday2 + '\n' + birthday3);
+
+        /*
+        get 取得方法系列
+        getFullYear()：取得年份
+        getMonth()：取得月份（0~11）
+        getDate()：取得日期（1~31）
+        getDay()：取得星期（0~6，0 代表星期日）
+        getHours()：取得小時
+        getMinutes()：取得分鐘
+        getSeconds()：取得秒數
+        getTime()：取得自 1970 / 1 / 1 00:00:00 UTC 以來的「時間戳記」（Timestamp，單位為毫秒，millisecond）
+        toLocaleString()：格式化日期字串，會根據瀏覽器用戶的地區（Locale）自動顯示對應的日期與時間格式
+        */
+
+        const MonthTW = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+        const MonthEN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        console.log(MonthTW[now.getMonth()]); //0~11
+        console.log(MonthEN[now.getMonth()]); //0~11
+
+        const DayJP = ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'];
+        const DayTW = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        console.log(DayTW[now.getDay()]); //0~6
+        console.log(DayJP[now.getDay()]); //0~6
+
+        //假設給兩個日期，算出他們差的天數
+        console.clear();
+        const date1 = new Date('2023-10-01');
+        const date2 = new Date('2023-10-04');
+
+        const date1Time = date1.getTime();
+        const date2Time = date2.getTime();
+        const diff = date2Time - date1Time;
+
+        /* const diffDays = diff / 1000;
+        console.log(diffDays, '秒');*/
+        const diffDays = diff / 1000 / 60 / 60 / 24;
+        console.log(diffDays, '天');
+
+        //算出跨年還剩幾天幾十幾分幾秒
+        console.clear();
+        const nowToday = new Date();
+        const newyearsEve = new Date('2027-01-01 00:00:00')
+        const diff2 = newyearsEve - nowToday;
+
+        function countDay() {
+            let day = 0, hr = 0, min = 0, sec = 0;
+            sec = Math.floor(diff2 / 1000 % 60);
+            min = Math.floor(diff2 / 1000 / 60 % 60);
+            hr = Math.floor(diff2 / 1000 / 60 / 60 % 24);
+            day = Math.floor(diff2 / 1000 / 60 / 60 / 24);
+
+
+            /*
+            diff2 /1000 = 秒數
+            diff2 /1000 /60 = 分鐘數，%餘數代表湊不成分鐘的毫秒
+            diff2 /1000 /60 /60 = 小時數，%餘數代表湊不成小時數的毫秒
+            diff2 / 1000 / 60 / 60 / 24 = 天數，%餘數代表湊不成天數的毫秒            
+            */
+            return `距離今年跨年還有 ${day} 天 ${hr} 小時 ${min} 分 ${sec} 秒。`;
+        }
+
+        console.log(countDay());
+
+        //老師示範
+        function countDay2() {
+            let day = 0, hr = 0, min = 0, sec = 0;
+            const nowToday = new Date();
+            const newYear = new Date(` ${nowToday.getFullYear() + 1}-01-01 00:00:00`);
+            //const newYear = new Date('2027-01-01 00:00:00')
+            const diff = ((newYear - nowToday) / 1000); //總毫秒數
+            sec = Math.floor(diff % 60); //秒數
+            min = Math.floor(diff / 60) % 60; //分鐘數
+            hr = Math.floor(diff / 60 / 60) % 24; //小時數
+            day = Math.floor(diff / 60 / 60 / 24); //天數
+
+            return `距離今年跨年還有 ${day} 天 ${hr} 小時 ${min} 分 ${sec} 秒。`;
+        }
+
+        console.log(countDay2());
+    </script>
+</body>
+
+</html>
