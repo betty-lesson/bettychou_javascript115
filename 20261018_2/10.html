@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>節點操作</title>
+</head>
+
+<body>
+    <h1>八嘎鴨肉</h1>
+    <h2>優嘎搭</h2>
+    <h3>阿里嘎多</h3>
+    <hr>
+    <div class="d1">
+        <ul class="u1">
+            <li class="l1">
+                <div> HELLO1 </div>
+                <ul class="u2">
+                    <li class="l2">hey(1)</li>
+                    <li>hey(2)</li>
+                </ul>
+            </li>
+            <li>
+                <div> HELLO2 </div>
+            </li>
+            <li>
+                <div> HELLO3 </div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const h1 = document.querySelector('h1');
+        const h2 = document.querySelector('h2');
+        const h3 = document.querySelector('h3');
+        const card = document.createElement('div');
+
+        card.textContent = '這是卡片';
+        Object.assign(card.style, {
+            width: '200px',
+            height: '200px',
+            backgroundColor: 'black',
+            color: 'white'
+        });
+
+        card.innerHTML = `
+        <div style="font-size:30px">原初世界</div>
+        <a href = "https://google.com.tw" style="color:yellow; font-size:24px; font-weight:bold;">前往第一世界</a>
+        <button style="font-size:20px; font-weight: bold; color:blue;">同伴都昏迷了</button>
+        `;
+
+        /*document.body.append(card); //放後面
+        card.remove(); //把卡片移除掉
+        
+        document.body.prepend(card); //放前面*/
+
+        document.querySelector('h2').replaceWith(card); //把h2換成卡片
+        document.querySelector('h3').after(card.cloneNode(true)); //把h3後面，加上卡片的複製品
+
+        card.querySelector('button').textContent = '被召喚了';
+
+        //------遍歷與定位-----------
+        const btn = card.querySelector('button');
+        console.log(btn.parentElement); //父元素
+        console.log(btn.closest('div')); //最接近的div元素
+
+        const li = document.querySelector('li');
+        console.log(li.children); //子元素
+        console.log(li.closest('div'));
+
+    </script>
+
+</body>
+
+</html>

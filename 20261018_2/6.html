@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container">
+        <p id="paragraph1" class="text red" style="color: red;">可露兒</p>
+        <p class="text">第二段文字</p>
+        <p>第三段文字</p>
+    </div>
+
+    <script>
+        const el = document.querySelector('#paragraph1')
+
+        //精準控制單一屬性
+        el.style.color = 'green';
+        /*el.setAttribute('style', 'color:green')同上意思*/
+        el.style.backgroundColor = 'yellow';
+        el.style.fontSize = '40px';
+
+        //element.style 直接設定style屬性
+        el.style = 'color:blue; font-size:14px';
+
+        //Object.assign() - 批量設定，程式碼簡潔，不會覆蓋所有樣式
+        Object.assign(el.style, {
+            color: 'purple',
+            backgroundColor: 'green'
+        });
+
+        //cssText - 使用cssText一次性設定，效能較好(雷同element.style效果，但會整個覆蓋)
+        el.style.cssText = 'color:blue; font-size:60px';
+
+        //setProperty() 支援css原生變數和複雜值
+        el.style.setProperty('font-weight', 'bold');
+    </script>
+</body>
+
+</html>
