@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>settime</title>
+</head>
+
+<body>
+    <script>
+        // setTimeout - 延遲執行
+        let timeoutId = setTimeout(function todo() {
+            console.log("永別了");
+        }, 3000);
+
+        // clearTimeout - 取消延遲執行
+        //clearTimeout(timeoutId);
+
+        // setInterval - 重複執行
+        let count = 0;
+        let intervalid = setInterval(() => {
+            console.log(`嗨夥計${count}`);
+            count++;
+            (count === 5) && clearInterval(intervalid);
+        }, 1000);
+
+
+    </script>
+</body>
+
+</html>

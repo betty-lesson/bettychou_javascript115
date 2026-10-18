@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title"><mark>我的</mark>網頁</h1>
+    <div id="container">
+        <p class="text">第一段文字</p>
+        <p class="text">第二段文字</p>
+        <p>第三段文字</p>
+    </div>
+    <div>
+        <fieldset>
+            <legend>表單介紹</legend>
+            <form>
+                <input id="acc" type="text" name="account" value="使用者名稱">
+                <input type="text" name="password" value="使用者密碼">
+                <button id="btn">點擊我</button>
+            </form>
+        </fieldset>
+    </div>
+
+    <script>
+        const myH1 = document.querySelector('#title');
+
+        document.querySelector('#title').textContent;
+        document.querySelector('#title').innerHTML;
+
+        document.querySelector('#title').textContent = '這裡<mark>已經</mark>變了'; //無效，要用innerHtml
+        document.querySelector('#title').innerHTML = '這裡<mark>已經</mark>變了'
+
+        document.querySelector('#container').innerHTML = `
+        <div>日貓族</div>
+        <div>名字後面的提亞</div>
+        <div>代表的是</div>
+        `;
+
+        document.querySelector('#container').innerHTML += '<div>單身未婚男子</div>';
+
+        console.log(myH1.id);
+
+        myH1.id = 'id-1';
+        myH1.className = 'cls-2';
+
+        const A = document.querySelector('#acc');
+        A.getAttribute('value');
+        A.setAttribute('value', 'userName'); //慢
+        A.value = '使用者名稱'; //快
+
+        A.value = '';//指定value為空字串
+        A.value = null;//指定value為null
+        A.removeAttribute('value'); //移除該html屬性
+
+    </script>
+</body>
+</body>
+
+</html>

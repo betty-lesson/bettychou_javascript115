@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .green {
+            color: green;
+        }
+
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .text {
+            background: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">我的網頁</h1>
+    <div id="container">
+        <p class="text red">第一段文字</p>
+        <p class="text">第二段文字</p>
+        <p>第三段文字</p>
+    </div>
+
+    <script>
+        const A = document.querySelector('.text');
+        A.classList.remove('red', 'text');
+        A.classList.add('green');
+        A.classList.toggle('blue'); //toggle開關，是藍色就讓它不是(恢復系統初始色)，不是藍色就讓它是
+    </script>
+</body>
+</body>
+
+</html>

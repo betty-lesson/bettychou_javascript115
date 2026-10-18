@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="title">我的網頁</h1>
+    <div id="container">
+        <p class="text">第一段文字</p>
+        <p class="text">第二段文字</p>
+        <p>第三段文字</p>
+ 
+        <fieldset>
+            <form>
+                <legend>表單介紹</legend>
+                <input type="text" name="account" value="使用者名稱">
+                <input type="text" name="password" value="使用者密碼">
+                <button id="btn">點擊我</button>
+            </form>
+        </fieldset>
+    </div>
+
+    <script>
+        // 舊的做法
+        console.log(document.getElementById('btn'));
+        console.log(document.getElementsByClassName('text'));
+        console.log(document.getElementsByTagName('p'));
+        console.log(document.getElementsByName('account'));
+        console.clear();
+
+        //現代技術寫法，querySelector是都能找，不用分不同類型不同寫法
+        console.log(document.querySelector('#btn')) //找ID
+        console.log(document.querySelector('.text')) //找class
+        console.log(document.querySelectorAll('.text')) //找所有class為text的元素
+        console.log(document.querySelector('p')) //找標籤
+        console.log(document.querySelectorAll('[name=account]'))//找屬性
+        console.clear();
+
+        //改元素
+        const elH1 = document.getElementById('title');
+        /*.log(elH1.textContent);
+        setTimeout(() => elH1.textContent = '這裡變了', 3000);*/
+        elH1.textContent = "這裡已經變了"; //改指定文字
+        elH1.style.color = "red"; //改顏色
+        elH1.addEventListener('click', () => console.log('被點了')); //加入事件監聽，事件名稱為click，觸發動作
+
+        const elsText = document.querySelectorAll('.text');
+        elsText.forEach(function (el) {
+            el.style.color = 'green';
+            el.textContent = '改過的段落';
+        })
+    </script>
+</body>
+</body>
+
+</html>
