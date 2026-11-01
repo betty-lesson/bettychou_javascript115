@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老師示範習題</title>
+    <style>
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin: 0 auto;
+
+            button {
+                padding: 8px 16px;
+                border: 1px solid #ccc;
+                background: #f5f5f5;
+            }
+
+            input {
+                width: 40px;
+                height: 40px;
+                border: none;
+                background: none;
+                cursor: pointer;
+            }
+        }
+
+        #preview-block {
+            background-color: red;
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+
+            &.square {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
+
+            &.circle {
+                clip-path: circle(50% at 50% 50%);
+            }
+
+            &.triangle {
+                clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            }
+
+            &.star {
+                clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <form class="form-container">
+        <button type="button" value="square">正方形</button>
+        <button type="button" value="circle">圓形</button>
+        <button type="button" value="triangle">三角形</button>
+        <button type="button" value="star">星星</button>
+        <input type="color" value="#ff0000" />
+    </form>
+    <hr />
+    <div id="preview-block" class="square"></div>
+
+    <script>
+        const previewBlock = document.getElementById('preview-block'); // 取得預覽區塊元素
+
+        //step1: 讓button的值可以改變preview的形狀
+        document.querySelectorAll('.form-container button').forEach(btn => {
+            /*console.log(btn, btn.value);*/
+
+            btn.addEventListener('click', (e) => {
+                console.log(e.target.value);
+                previewBlock.className = e.target.value;
+            }); // 改變形狀
+
+        });
+
+        //step2: 讓input的值可以改變preview的顏色
+        document.querySelector('.form-container input').addEventListener('input', (e) => {
+            console.log(e.target.value);
+            previewBlock.style.backgroundColor = e.target.value;
+        }) // 改變顏色
+        /*使用change跟input(即時出現結果)差別在於，用change(確定才有)還要一個Enter送出的動作才會觸發*/
+
+        /*onclick是早期html寫法，addEventListener比較安全*/
+
+    </script>
+</body>
+
+</html>
