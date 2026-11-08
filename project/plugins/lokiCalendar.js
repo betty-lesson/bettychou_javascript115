@@ -1,11 +1,47 @@
 //公用變數區
+const fetchPath = './db.json';
+let nationalHoliday, pallet, booked;
+let calendarCtrl;
+let tableData = { //初始的表格資料
+  totalPrice: 0, // 總價
+  normalCount: 0, // 平日入住數
+  holidayCount: 0, // 平日入住數
+  pallet: { //營位資料 => 標題名稱、可賣數量、預約日金、小計、訂購數
+    aArea: {
+      title: '河畔 × A 區',
+      sellCount: 0,
+      sellInfo: '<div></div>',
+      sumPrice: 0,
+      orderCount: 0
+    },
+    bArea: {
+      title: '山間 × B 區',
+      sellCount: 0,
+      sellInfo: '<div></div>',
+      sumPrice: 0,
+      orderCount: 0
+    },
+    cArea: {
+      title: '平原 × C 區',
+      sellCount: 0,
+      sellInfo: '<div></div>',
+      sumPrice: 0,
+      orderCount: 0
+    },
+    dArea: {
+      title: '車屋 × D 區',
+      sellCount: 0,
+      sellInfo: '<div></div>',
+      sumPrice: 0,
+      orderCount: 0
+    }
+  }
+};
 /*dayjs init*/
 dayjs.locale('zh-tw');
 dayjs.extend(window.dayjs_plugin_localeData);
 dayjs.extend(dayjs_plugin_isSameOrBefore);
-
-const fetchPath = './db.json';
-let nationalHoliday, pallet, booked;
+dayjs.extend(dayjs_plugin_isBetween);
 
 //初始化區
 fetchData();
@@ -16,10 +52,37 @@ async function fetchData() {
   const json = await response.json();
   ({ nationalHoliday, pallet, booked } = json);
 
-  calenderService();
+  calendarCtrl = calendarService();
+  calendarCtrl.print();
+
+  //綁定月份切換按紐
+  /*第一種寫法
+   document
+     .querySelector('a[href="#prevCtrl"]')
+     .addEventListener("click", (e) => {
+       e.preventDefault();
+       calendarCtrl.prevMonth("上一個月");
+     });
+   document
+     .querySelector('a[href="#nextCtrl"]')
+     .addEventListener("click", (e) => {
+       e.preventDefault();
+       calendarCtrl.nextMonth("下一個月");
+     });*/
+  document.querySelector(".ctrlBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    calendarCtrl.swap(e.target.closest("a").getAttribute("href"));
+  });
+
+  //選擇日期
+  document.querySelector(".calendar").addEventListener("click", (e) => {
+    e.preventDefault();
+    const sltDay = e.target.closest(".selectDay");
+    sltDay && calendarCtrl.choose(sltDay);
+  });
 }
 
-const calenderService = () => {
+const calendarService = () => {
   //變數
   let theDay = dayjs();
   const today = dayjs();
@@ -35,6 +98,8 @@ const calenderService = () => {
     title: "",
     thisDate: theDay.add(1, "month"), //右邊的行事曆加一個月
   };
+
+  const chooseDays = [null, null];
 
   //建立行事曆
   const listMaker = (obj) => {
@@ -63,6 +128,7 @@ const calenderService = () => {
       //1.是否過期
       if (currentDate.isSameOrBefore(today)) className += " delDay";
       else {
+        className += " selectDay";
 
         //2.是否假日 => 六日dayjs().day() === 6 or 0
         /*方法1*/
@@ -94,7 +160,7 @@ const calenderService = () => {
       }
 
       //插入li
-      obj.listBox += `<li class="${className}">${i}</li>`;
+      obj.listBox += `<li class="${className}" data-date="${currentDatYMD}">${i}</li>`;
     }
 
     obj.title = `${dayjs.months()[obj.thisDate.month()]}${obj.thisDate.year()}`;
@@ -107,13 +173,96 @@ const calenderService = () => {
     listMaker(objL);
     listMaker(objR);
 
-    // console.log(objL);
-
     document.querySelector(".leftDayList").innerHTML = objL.listBox;
     document.querySelector(".rightDayList").innerHTML = objR.listBox;
     document.querySelector(".leftBar>h4").innerHTML = objL.title;
     document.querySelector(".rightBar>h4").innerHTML = objR.title;
+
+    // document.querySelectorAll('.selectDay').forEach(item=>{
+
+    // }) 
   };
 
-  listPrint();
+  const chooseList = (node) => {
+    const [fst, sec] = chooseDays;
+    if (fst && !sec && node.dataset.date === fst.dataset.date) return; //禁算同一日期點選
+
+    document.querySelectorAll(".calendar li.selectConnect").forEach((item) => {
+      item.classList.remove("selectConnect");
+    });
+
+    if (!fst && !sec) {
+      // [null, null]
+      chooseDays[0] = node;
+      node.classList.add("selectHead");
+    } else if (fst && !sec) {
+
+      // [1st, null]
+      chooseDays[1] = node;
+
+      // 判斷是否為[2nd, 1st]，dayjs(2nd) < dayjs(1st)
+      const is2before1 = dayjs(node.dataset.date).isSameOrBefore(
+        dayjs(chooseDays[0].dataset.date),
+      );
+      console.log(is2before1); //YMD => dayjs
+
+      if (is2before1) {
+        chooseDays[0].classList.replace("selectHead", "selectFoot"); //1st class 改footer
+        chooseDays[1].classList.add("selectHead"); //2nd class 加head
+        [chooseDays[1], chooseDays[0]] = [chooseDays[0], chooseDays[1]]; //[2nd,1st]=>[1st,2nd]
+      } else chooseDays[1].classList.add("selectFoot");
+    } else {
+      chooseDays.forEach((item) =>
+        item.classList.remove("selectHead", "selectFoot"),
+      )
+      // [!null, !null] =>清空，作成[1st, null]
+      node.classList.add("selectHead");
+      chooseDays[0] = node;
+      chooseDays[1] = null;
+    }
+
+    //規劃selectConnect
+    if (chooseDays[0] && chooseDays[1]) {
+      document.querySelectorAll(".calendar li.selectDay").forEach((item) => {
+        const isBetween = dayjs(item.dataset.date).isBetween(
+          chooseDays[0].dataset.date,
+          chooseDays[1].dataset.date,
+        );
+        isBetween && item.classList.add("selectConnect");
+      });
+    }
+  };
+
+  //切換月份
+  const changeMonth = (count) => {
+    theDay = theDay.add(count, "month");
+    chooseDays[0] = null;
+    chooseDays[1] = null;
+    objL.listBox = "";
+    objL.thisDate = theDay;
+    objR.listBox = "";
+    objR.thisDate = theDay.add(1, "month");
+  }
+  return {
+    print: listPrint,
+    /*第一種寫法
+     prevMonth: () => {
+       changeMonth(-1);
+       listPrint();
+     },
+     nextMonth: () => {
+       changeMonth(1);
+       listPrint();
+     },*/
+    swap: (v) => {
+      changeMonth(v === "#prevCtrl" ? -1 : 1);
+      listPrint();
+    },
+
+    choose: (node) => {
+      chooseList(node);
+    },
+    refresh: tablePrint,
+  };
+
 };
